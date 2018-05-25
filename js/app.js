@@ -148,6 +148,7 @@ allEnemies.push(enemy);
 
 }
 
+//if gem is collected, increse score, numbers of colected gems and change its position
 function collect (thisGem) {
 
 	if (player.x - thisGem.x <= 50
@@ -169,7 +170,7 @@ player.y - thisGem.y <= 60
 
 };
 
-
+// fuctions changing the look of player character
 function boy () {
 	player.sprite = 'images/char-boy.png';
 	}
