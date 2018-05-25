@@ -1,6 +1,7 @@
 //set the variables
 var level = 1;
 var score = 0;
+var gems = 0;
 
 
 // Enemies our player must avoid
@@ -133,8 +134,9 @@ player.y - thisEnemy.y <= 60
 //Level up - increase level, score and number of enemies (that are reset)
 function levelUp () {
 	score+=(50*level);
-    	level +=1;
-    	
+    level +=1;
+    document.getElementById('score').innerHTML = score;
+    document.getElementById('levels').innerHTML = level;	
     	player.x = 200;
     	player.y = 390;
     	console.log(level, score);
@@ -157,8 +159,27 @@ player.y - thisGem.y <= 60
 		)
 
 
-	 {gem = new Gem(Math.random()*400, Math.random() * 220);
-	 	score+=100
+	 {score+=100;
+	 	gems+=1;
+	 	document.getElementById('score').innerHTML = score;
+	 	document.getElementById('gems').innerHTML = gems;
+	 	gem = new Gem(Math.random()*400, Math.random() * 220);
+	 	
 	 	console.log("score: "+score );}
 
 };
+
+
+function boy () {
+	player.sprite = 'images/char-boy.png';
+	}
+
+function girl () {
+  	player.sprite = 'images/char-pink-girl.png';
+  }
+
+function princess () {
+	player.sprite = 'images/char-princess-girl.png';
+}
+
+

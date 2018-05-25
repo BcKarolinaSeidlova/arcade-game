@@ -1,3 +1,61 @@
 body {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	font-family: 'Bad Script', cursive;
+	font-size: 4.5vh;
+	margin-left: 20px;
+	margin-top: 4.5vh;
+}
+.info > .footer {
+
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	font-family: 'Bad Script', cursive;
+	font-size: 3.5vh;
+	margin-right: 20px;
+	margin-top: 4.5vh;
+
+}
+
+.btn {
+	display: flex;
+	justify-content: center;
+	min-height: 45px;
+	font-size:3vh;
+	cursor: pointer;
+	border-radius: 15px;
+
+}
+#boy, #girl, #princess {
+	border: 1px solid black;
+}
+#boy:hover {
+	background: #42bff4;
+}
+
+#girl:hover {
+	background: #f2b2f4;
+}
+
+#princess:hover {
+	background: #fcf87e;
+}
+
+.footer {
+	font-size:3vh; 
+}
+
+.footer > a {
+	font-weight: 800;
+	text-decoration: none;
+	color: black;
 }
