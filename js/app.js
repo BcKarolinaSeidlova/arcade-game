@@ -1,3 +1,8 @@
+//set the variables
+var level = 1;
+var score = 0;
+
+
 // Enemies our player must avoid
 var Enemy = function(x,y,speed) {
    this.x = x;
@@ -14,12 +19,15 @@ Enemy.prototype.update = function(dt) {
     if (this.x>=505) {
         this.x =0;
     }
+
+    collision (this);
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -37,6 +45,15 @@ Player.prototype.update = function () {
     if (player.x > 400) {player.x = 400}
     if (player.y < 5) {player.y = 5}
     if (player.y > 390) {player.y = 390}
+
+    //if player reaches the top (water), position is reset, level and score up;
+    if (player.y == 5) {
+    	score+=(50*level);
+    	level +=1;
+    	
+    	player.x = 200;
+    	player.y = 390;
+    	console.log(level, score);}
 };
 
 Player.prototype.render = function () {
@@ -64,7 +81,7 @@ var allEnemies = [];
 // Place the player object in a variable called player
 var player = new Player(200, 390, 50);
 var enemy = new Enemy(0, Math.random()*250, Math.random() * 150);
-allEnemies.push(enemy);
+allEnemies.push(enemy); 
 
 
 
@@ -80,3 +97,21 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+
+//if player is too close to the enemy, player's position is reset
+function collision (thisEnemy) {
+
+	if (player.x - thisEnemy.x <= 50
+		&& player.x - thisEnemy.x >=-50&&
+
+player.y - thisEnemy.y <= 60
+		&& player.y - thisEnemy.y >=-60
+
+		)
+
+
+	 {player.x=200;
+	 	player.y =390};
+};
