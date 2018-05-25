@@ -46,14 +46,9 @@ Player.prototype.update = function () {
     if (player.y < 5) {player.y = 5}
     if (player.y > 390) {player.y = 390}
 
-    //if player reaches the top (water), position is reset, level and score up;
-    if (player.y == 5) {
-    	score+=(50*level);
-    	level +=1;
-    	
-    	player.x = 200;
-    	player.y = 390;
-    	console.log(level, score);}
+    //if player reaches the top (water), level up
+    if (player.y <= 5) {
+    	levelUp();}
 };
 
 Player.prototype.render = function () {
@@ -74,6 +69,7 @@ Player.prototype.handleInput = function(key) {
         player.y += player.speed - 15;
     }
 };
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -115,3 +111,19 @@ player.y - thisEnemy.y <= 60
 	 {player.x=200;
 	 	player.y =390};
 };
+
+//Level up - increase level, score and number of enemies (that are reset)
+function levelUp () {
+	score+=(50*level);
+    	level +=1;
+    	
+    	player.x = 200;
+    	player.y = 390;
+    	console.log(level, score);
+	allEnemies.length = 0;
+	for (var i =0; i<level; i++) {
+		enemy = new Enemy(0, Math.random()*250, Math.random() * 150);
+allEnemies.push(enemy);
+	}
+
+}
