@@ -71,6 +71,23 @@ Player.prototype.handleInput = function(key) {
 };
 
 
+//special object gem
+var Gem = function (x,y) {
+    this.x = x;
+    this.y = y;
+
+    // The image/sprite for our enemies, this uses
+    // a helper we've provided to easily load images
+    this.sprite = 'images/Gem Orange.png';
+};
+Gem.prototype.update = function () {
+	collect(this);
+
+}
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
@@ -78,6 +95,7 @@ var allEnemies = [];
 var player = new Player(200, 390, 50);
 var enemy = new Enemy(0, Math.random()*250, Math.random() * 150);
 allEnemies.push(enemy); 
+var gem = new Gem (Math.random()*400, Math.random() * 220);
 
 
 
@@ -127,3 +145,20 @@ allEnemies.push(enemy);
 	}
 
 }
+
+function collect (thisGem) {
+
+	if (player.x - thisGem.x <= 50
+		&& player.x - thisGem.x >=-50&&
+
+player.y - thisGem.y <= 60
+		&& player.y - thisGem.y >=-60
+
+		)
+
+
+	 {gem = new Gem(Math.random()*400, Math.random() * 220);
+	 	score+=100
+	 	console.log("score: "+score );}
+
+};
